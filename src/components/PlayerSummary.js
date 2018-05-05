@@ -3,12 +3,12 @@ import { Card, Col, Row } from "antd";
 
 class PlayerSummary extends Component {
   render() {
-    const { player } = this.props;
+    const { jerseyNumber, person, position } = this.props.player;
     return (
       <Card
-        title={`#${player.jerseyNumber ? player.jerseyNumber : ""} ${
-          player.person.fullName
-        } • ${player.position.name}`}
+        title={`#${jerseyNumber ? jerseyNumber : ""} ${person.fullName} • ${
+          position.name
+        }`}
         style={{ width: "29.3%", margin: "2%" }}
       />
     );
