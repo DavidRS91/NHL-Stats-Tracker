@@ -1,12 +1,16 @@
 import React, { Component } from "react";
+import { Card, Col, Row } from "antd";
 
 class PlayerSummary extends Component {
   render() {
     const { player } = this.props;
     return (
-      <div style={{ backgroundColor: "red", margin: "5px", color: "white" }}>
-        <h3>{player.person.fullName}</h3>
-      </div>
+      <Card
+        title={`#${player.jerseyNumber ? player.jerseyNumber : ""} ${
+          player.person.fullName
+        } • ${player.position.name}`}
+        style={{ width: "29.3%", margin: "2%" }}
+      />
     );
   }
 }

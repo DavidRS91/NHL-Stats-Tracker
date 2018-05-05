@@ -20,8 +20,7 @@ class PlayerSummaries extends Component {
 
   render() {
     return (
-      <div>
-        PLAYERS:
+      <div style={{ display: "flex", flexWrap: "wrap" }}>
         {this.state.players.map(p => <PlayerSummary player={p} />)}
       </div>
     );
