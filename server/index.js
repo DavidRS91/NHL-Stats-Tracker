@@ -3,7 +3,7 @@ const BodyParser = require("koa-bodyparser");
 const Logger = require("koa-logger");
 const Router = require("koa-router");
 const mongoose = require("mongoose");
-const fetch = require("isomorphic-fetch");
+const cors = require("@koa/cors");
 
 const TeamModel = require("./db/schemas/Team");
 const requests = require("./lib/requests");
@@ -17,6 +17,8 @@ mongoose.connection.on("open", async function() {
 
 const app = new Koa();
 const router = new Router();
+
+app.use(cors());
 
 app.use(async (ctx, next) => {
   try {
@@ -32,7 +34,9 @@ router.get("/", async ctx => {
   ctx.body = { message: "hello world!" };
 });
 
+app.use(BodyParser());
+app.use(Logger());
 app.use(router.routes());
 app.use(router.allowedMethods());
 
-app.listen(3000);
+app.listen(3001);
