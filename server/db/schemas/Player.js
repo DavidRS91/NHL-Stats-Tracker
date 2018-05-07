@@ -27,6 +27,11 @@ const Player = new Schema({
     id: Number,
     name: String,
     link: String
+  },
+  primaryPosition: {
+    code: String,
+    name: String,
+    abbreviation: String
   }
 });
 

@@ -10,19 +10,11 @@ class App extends Component {
     this.state = { message: "No Message" };
   }
 
-  async componentDidMount() {
-    const response = await requests.rootRequest();
-    console.log("mounting");
-    this.setState({
-      message: response.message
-    });
-  }
-
   render() {
     return (
       <div>
         <h2>{this.state.message}</h2>
-        {/* <PlayerSummaries /> */}
+        <PlayerSummaries />
       </div>
     );
   }
