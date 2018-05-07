@@ -3,6 +3,10 @@ const BodyParser = require("koa-bodyparser");
 const Logger = require("koa-logger");
 const Router = require("koa-router");
 const mongoose = require("mongoose");
+const fetch = require("isomorphic-fetch");
+
+const TeamModel = require("./db/schemas/Team");
+const requests = require("./lib/requests");
 
 mongoose.Promise = global.Promise;
 mongoose.connect("mongodb://localhost/nhlStatsTracker");
