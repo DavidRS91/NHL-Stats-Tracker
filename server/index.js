@@ -4,9 +4,7 @@ const Logger = require("koa-logger");
 const Router = require("koa-router");
 const mongoose = require("mongoose");
 const cors = require("@koa/cors");
-
-const TeamModel = require("./db/schemas/Team");
-const requests = require("./lib/requests");
+const playerRouter = require("./routes/players");
 
 mongoose.Promise = global.Promise;
 mongoose.connect("mongodb://localhost/nhlStatsTracker");
@@ -36,6 +34,8 @@ router.get("/", async ctx => {
 
 app.use(BodyParser());
 app.use(Logger());
+app.use(playerRouter.routes());
+app.use(playerRouter.allowedMethods());
 app.use(router.routes());
 app.use(router.allowedMethods());
 
