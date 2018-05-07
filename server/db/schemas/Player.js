@@ -3,17 +3,30 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const Player = new Schema({
-  person: {
+  id: Number,
+  fullName: String,
+  link: String,
+  firstName: String,
+  lastName: String,
+  primaryNumber: String,
+  birthDate: String,
+  currentAge: Number,
+  birthCity: String,
+  birthStateProvince: String,
+  birthCountry: String,
+  nationality: String,
+  height: String,
+  weight: Number,
+  active: Boolean,
+  alternateCaptain: Boolean,
+  captain: Boolean,
+  rookie: Boolean,
+  shootsCatches: String,
+  rosterStatus: String,
+  currentTeam: {
     id: Number,
-    fullName: String,
-    link: String
-  },
-  jerseyNumber: String,
-  position: {
-    code: String,
     name: String,
-    type: String,
-    abbreviation: String
+    link: String
   }
 });
 
