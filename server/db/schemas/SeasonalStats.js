@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const SeasonalStats = new Schema({
+  playerId: Number,
   season: String,
   stat: {
     timeOnIce: String,

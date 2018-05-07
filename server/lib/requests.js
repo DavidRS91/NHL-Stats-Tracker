@@ -20,4 +20,12 @@ async function getAllPlayers() {
   return players;
 }
 
-export default { getTeams, getAllPlayers };
+async function getPlayerStats(player_endpoint) {
+  const statsRequest = await fetch(
+    `${DOMAIN}${player_endpoint}${PLAYER_STATS_ENDPOINT}`
+  );
+  const statsData = await statsRequest.json();
+  return statsData.people[0];
+}
+
+module.exports = { getTeams, getAllPlayers, getPlayerStats };
