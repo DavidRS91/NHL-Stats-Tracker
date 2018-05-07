@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { List } from "antd";
 import requests from "../lib/requests";
 import PlayerSummary from "./PlayerSummary";
 
@@ -11,18 +12,18 @@ class PlayerSummaries extends Component {
   }
 
   async componentDidMount() {
-    const players = await requests.getAllPlayers();
-    console.log(players[0]);
+    const response = await requests.getPlayers();
+    console.log(response.players[15]);
     this.setState({
-      players: players
+      players: response.players
     });
   }
 
   render() {
     return (
-      <div style={{ display: "flex", flexWrap: "wrap" }}>
-        {this.state.players.map(p => <PlayerSummary player={p} />)}
-      </div>
+      <List>
+        {this.state.players.map(p => <PlayerSummary key={p.id} player={p} />)}
+      </List>
     );
   }
 }
