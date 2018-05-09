@@ -21,3 +21,8 @@
 .App-intro {
   font-size: large;
 }
+
+#StatTotals {
+  background-color: #fafafa;
+  font-weight: 500;
+}

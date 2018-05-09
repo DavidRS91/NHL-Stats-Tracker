@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import requests from "../../lib/requests";
+import PlayerStatsTable from "../../components/PlayerStatsTable";
 
 class PlayerShowPage extends Component {
   constructor() {
     super();
     this.state = {
       player: {},
-      stats: {}
+      stats: []
     };
   }
 
@@ -18,7 +19,13 @@ class PlayerShowPage extends Component {
     });
   }
   render() {
-    return <p>TEST</p>;
+    const { player, stats } = this.state;
+    return (
+      <div>
+        <h1>{player.fullName}</h1>
+        <PlayerStatsTable stats={stats.map(s => s.stat)} />
+      </div>
+    );
   }
 }
 
