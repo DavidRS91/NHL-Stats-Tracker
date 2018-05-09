@@ -1,21 +1,21 @@
 import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 import "antd/dist/antd.css";
 import PlayerSummaries from "./components/PlayerSummaries";
-import requests from "./lib/requests";
+import PlayerShowPage from "./pages/players/PlayerShowPage";
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = { message: "No Message" };
-  }
-
   render() {
     return (
-      <div>
-        <h2>{this.state.message}</h2>
-        <PlayerSummaries />
-      </div>
+      <Router>
+        <div>
+          <Switch>
+            <Route exact path="/" component={PlayerSummaries} />
+            <Route exact path="/players/:id" component={PlayerShowPage} />
+          </Switch>
+        </div>
+      </Router>
     );
   }
 }

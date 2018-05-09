@@ -6,4 +6,10 @@ async function getPlayers() {
   return data;
 }
 
-export default { getPlayers };
+async function getPlayer(id) {
+  const request = await fetch(`${DOMAIN}/players/${id}`);
+  const data = await request.json();
+  return data;
+}
+
+export default { getPlayers, getPlayer };

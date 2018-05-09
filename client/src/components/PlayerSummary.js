@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { List } from "antd";
+import { Link } from "react-router-dom";
 
 class PlayerSummary extends Component {
   render() {
@@ -9,14 +10,18 @@ class PlayerSummary extends Component {
       primaryPosition,
       nationality,
       shootsCatches,
-      currentTeam
+      currentTeam,
+      id
     } = this.props.player;
     return (
       <List.Item>
         <List.Item.Meta
-          title={`#${primaryNumber || "NA"} ${fullName} • ${
-            primaryPosition.code
-          } • ${currentTeam.name}`}
+          title={
+            <Link to={`/players/${id}`}>
+              #{primaryNumber || "NA"} {fullName} • {primaryPosition.code} •{" "}
+              {currentTeam.name}
+            </Link>
+          }
           description={`Nationality: ${nationality} • Shoots: ${shootsCatches}`}
         />
       </List.Item>
@@ -34,10 +39,10 @@ export default PlayerSummary;
 // birthStateProvince: "AB"
 // captain: false
 // currentAge: 26
-// currentTeam: id: 1
-// link: "/api/v1/teams/1"
-// name: "New Jersey Devils"
-// __proto__: Object
+// currentTeam:
+//// id: 1
+//// link: "/api/v1/teams/1"
+//// name: "New Jersey Devils"
 // firstName: "Taylor"
 // fullName: "Taylor Hall"
 // height: "6' 1""
@@ -46,10 +51,10 @@ export default PlayerSummary;
 // link: "/api/v1/people/8475791"
 // nationality: "CAN"
 // primaryNumber: "9"
-// primaryPosition: abbreviation: "LW"
-// code: "L"
-// name: "Left Wing"
-// __proto__: Object
+// primaryPosition:
+//// abbreviation: "LW"
+//// code: "L"
+//// name: "Left Wing"
 // rookie: false
 // rosterStatus: "Y"
 // shootsCatches: "L"
