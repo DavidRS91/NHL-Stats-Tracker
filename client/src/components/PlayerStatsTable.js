@@ -1,33 +1,54 @@
 import React, { Component } from "react";
 import { Table } from "antd";
 
-const columns = [
+const skaterColumns = [
+  {
+    title: "Season",
+    dataIndex: "season",
+    key: "season",
+    width: "10%",
+    align: "center"
+  },
+  {
+    title: "Team",
+    dataIndex: "team",
+    key: "team",
+    width: "20%",
+    align: "center"
+  },
   {
     title: "Games Played",
     dataIndex: "games",
     key: "games",
-    width: "25%",
+    width: "20%",
     align: "center"
   },
   {
     title: "Goals",
     dataIndex: "goals",
     key: "goals",
-    width: "25%",
+    width: "10%",
     align: "center"
   },
   {
     title: "Assists",
     dataIndex: "assists",
     key: "assists",
-    width: "25%",
+    width: "10%",
+    align: "center"
+  },
+  {
+    title: "Points",
+    dataIndex: "points",
+    key: "points",
+    width: "15%",
     align: "center"
   },
   {
     title: "Time On Ice",
     dataIndex: "timeOnIce",
     key: "timeOnIce",
-    width: "25%",
+    width: "15%",
     align: "center"
   }
 ];
@@ -58,18 +79,20 @@ class PlayerStatsTable extends Component {
     const { stats } = this.props;
     return (
       <div>
-        <Table pagination={false} columns={columns} dataSource={stats} />
+        <Table pagination={false} columns={skaterColumns} dataSource={stats} />
         <Table
           id={"StatTotals"}
-          columns={columns}
+          columns={skaterColumns}
           pagination={false}
           showHeader={false}
           dataSource={[
             {
-              games: this.sumIntegers("games"),
               assists: this.sumIntegers("assists"),
-              timeOnIce: this.sumTimeOnIce("timeOnIce"),
-              goals: this.sumIntegers("goals")
+              games: this.sumIntegers("games"),
+              goals: this.sumIntegers("goals"),
+              points: this.sumIntegers("points"),
+              season: "Total: ",
+              timeOnIce: this.sumTimeOnIce("timeOnIce")
             }
           ]}
         />

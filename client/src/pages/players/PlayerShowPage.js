@@ -23,7 +23,17 @@ class PlayerShowPage extends Component {
     return (
       <div>
         <h1>{player.fullName}</h1>
-        <PlayerStatsTable stats={stats.map(s => s.stat)} />
+        <PlayerStatsTable
+          stats={stats.map(s => {
+            s.stat.season = `${s.season.substring(0, 4)}-${s.season.substring(
+              6,
+              8
+            )}`;
+            s.stat.points = s.stat.assists + s.stat.goals;
+            s.stat.team = s.team.name;
+            return s.stat;
+          })}
+        />
       </div>
     );
   }
