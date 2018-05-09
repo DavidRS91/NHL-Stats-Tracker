@@ -14,19 +14,11 @@ class PlayerShowPage extends Component {
   }
 
   async componentDidMount() {
-    const playerData = await requests.getPlayer(this.props.match.params.id);
-    let pointsBySeason = {};
-    playerData.stats.map(s => {
-      s.season = `${s.season.substring(0, 4)}-${s.season.substring(6, 8)}`;
-      s.points = s.stat.assists + s.stat.goals;
-      pointsBySeason[s.season]
-        ? (pointsBySeason[s.season] += s.points)
-        : (pointsBySeason[s.season] = s.points);
-    });
+    const data = await requests.getPlayer(this.props.match.params.id);
     this.setState({
-      player: playerData.player,
-      stats: playerData.stats,
-      pointsBySeason: pointsBySeason
+      player: data.player,
+      stats: data.stats,
+      pointsBySeason: data.pointsBySeason
     });
   }
   render() {

@@ -15,6 +15,17 @@ class PlayerStatsChart extends Component {
             }
           ]
         }}
+        options={{
+          scales: {
+            yAxes: [
+              {
+                ticks: {
+                  beginAtZero: true
+                }
+              }
+            ]
+          }
+        }}
       />
     );
   }
