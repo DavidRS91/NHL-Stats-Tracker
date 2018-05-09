@@ -9,37 +9,37 @@ class PlayerShowPage extends Component {
     this.state = {
       player: {},
       stats: [],
-      seasonalPoints: {}
+      pointsBySeason: {}
     };
   }
 
   async componentDidMount() {
     const playerData = await requests.getPlayer(this.props.match.params.id);
-    let seasonalPoints = {};
+    let pointsBySeason = {};
     playerData.stats.map(s => {
       s.season = `${s.season.substring(0, 4)}-${s.season.substring(6, 8)}`;
       s.points = s.stat.assists + s.stat.goals;
-      seasonalPoints[s.season]
-        ? (seasonalPoints[s.season] += s.points)
-        : (seasonalPoints[s.season] = s.points);
+      pointsBySeason[s.season]
+        ? (pointsBySeason[s.season] += s.points)
+        : (pointsBySeason[s.season] = s.points);
     });
     this.setState({
       player: playerData.player,
       stats: playerData.stats,
-      seasonalPoints: seasonalPoints
+      pointsBySeason: pointsBySeason
     });
   }
   render() {
-    const { player, stats, seasonalPoints } = this.state;
+    const { player, stats, pointsBySeason } = this.state;
     return (
       <div>
         <h1>{player.fullName}</h1>
-        <PlayerStatsChart data={seasonalPoints} />
+        <PlayerStatsChart data={pointsBySeason} />
         <PlayerStatsTable
           stats={stats.map(s => {
             s.stat.season = `${s.season.substring(0, 4)}-${s.season.substring(
-              6,
-              8
+              5,
+              7
             )}`;
             s.stat.points = s.stat.assists + s.stat.goals;
             s.stat.team = s.team.name;

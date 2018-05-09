@@ -6,17 +6,6 @@ class PlayerStatsChart extends Component {
     const { data } = this.props;
     return (
       <Bar
-        // data={{
-        //   labels: data.map(s => s.season),
-        //   datasets: [
-        //     {
-        //       data: data.map(s => s.points),
-        //       label: "Points",
-        //       backgroundColor: "#aaaaaa",
-        //       borderColor: "#fafafa"
-        //     }
-        //   ]
-        // }}
         data={{
           labels: Object.keys(data),
           datasets: [
