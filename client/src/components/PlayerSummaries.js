@@ -13,7 +13,6 @@ class PlayerSummaries extends Component {
 
   async componentDidMount() {
     const response = await requests.getPlayers();
-    console.log(response.players[15]);
     this.setState({
       players: response.players
     });

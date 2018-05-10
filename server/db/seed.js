@@ -40,7 +40,7 @@ async function seedPlayersAndStats() {
     }
   }
   PlayerModel.insertMany(playerDetails);
-  console.log("Players Loaded!");
+  console.log("Players and stats Loaded!");
 }
 
 seedTeams();

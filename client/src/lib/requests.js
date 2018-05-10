@@ -7,9 +7,15 @@ async function getPlayers() {
 }
 
 async function getPlayer(id) {
-  const request = await fetch(`${DOMAIN}/players/${id}`);
-  const data = await request.json();
-  return data;
+  const req = await fetch(`${DOMAIN}/players/${id}`);
+  const res = await req.json();
+  return res;
 }
 
-export default { getPlayers, getPlayer };
+async function getPlayerStats(id) {
+  const req = await fetch(`${DOMAIN}/stats/${id}`);
+  const res = await req.json();
+  return res;
+}
+
+export default { getPlayers, getPlayer, getPlayerStats };
