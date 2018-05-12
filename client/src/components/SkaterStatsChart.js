@@ -1,19 +1,14 @@
 import React, { Component } from "react";
-import { Bar } from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
 
-class PlayerStatsChart extends Component {
+class SkaterStatsChart extends Component {
   render() {
     const { data } = this.props;
     return (
-      <Bar
+      <Line
         data={{
-          labels: Object.keys(data),
-          datasets: [
-            {
-              data: Object.values(data),
-              label: "Points"
-            }
-          ]
+          labels: data.map(s => s.season),
+          datasets: []
         }}
         options={{
           scales: {
@@ -31,4 +26,4 @@ class PlayerStatsChart extends Component {
   }
 }
 
-export default PlayerStatsChart;
+export default SkaterStatsChart;

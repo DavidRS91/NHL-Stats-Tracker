@@ -3,7 +3,6 @@ const fetch = require("isomorphic-fetch");
 
 const requests = require("../lib/requests");
 const PlayerModel = require("./schemas/Player");
-const SeasonalStatsModel = require("./schemas/SeasonalStats");
 const TeamModel = require("./schemas/Team");
 
 const { getTeams, getAllPlayers, getPlayerStats } = requests;
@@ -27,16 +26,11 @@ async function seedPlayersAndStats() {
   let progress = 0;
   for (let player of playerSummaries) {
     let playerDetail = await getPlayerStats(player.person.link);
-    let playerStats = playerDetail.stats[0].splits;
-    delete playerDetail.stats;
+    playerDetail.stats = playerDetail.stats[0].splits;
     playerDetails.push(playerDetail);
-    for (let season of playerStats) {
-      season.playerId = player.person.id;
-      await new SeasonalStatsModel(season).save();
-      progress += 1;
-      if (progress % 10 === 0) {
-        console.log(progress);
-      }
+    progress += 1;
+    if (progress % 25 === 0) {
+      console.log(progress);
     }
   }
   PlayerModel.insertMany(playerDetails);

@@ -53,7 +53,7 @@ const skaterColumns = [
   }
 ];
 
-class PlayerStatsTable extends Component {
+class SkaterStatsTable extends Component {
   constructor(props) {
     super(props);
     this.sumIntegers = this.sumIntegers.bind(this);
@@ -79,7 +79,18 @@ class PlayerStatsTable extends Component {
     const { stats } = this.props;
     return (
       <div>
-        <Table pagination={false} columns={skaterColumns} dataSource={stats} />
+        <Table
+          pagination={false}
+          columns={skaterColumns}
+          dataSource={stats.map(s => {
+            (s.team = s.team.name), (s.goals = s.stat.goals);
+            s.points = s.stat.points;
+            s.assists = s.stat.assists;
+            s.timeOnIce = s.stat.timeOnIce;
+            s.games = s.stat.games;
+            return s;
+          })}
+        />
         <Table
           id={"StatTotals"}
           columns={skaterColumns}
@@ -101,4 +112,4 @@ class PlayerStatsTable extends Component {
   }
 }
 
-export default PlayerStatsTable;
+export default SkaterStatsTable;

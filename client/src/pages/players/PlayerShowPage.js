@@ -1,46 +1,39 @@
 import React, { Component } from "react";
 import requests from "../../lib/requests";
-import PlayerStatsTable from "../../components/PlayerStatsTable";
-import PlayerStatsChart from "../../components/PlayerStatsChart";
+import SkaterStatsTable from "../../components/SkaterStatsTable";
+import SkaterStatsChart from "../../components/SkaterStatsChart";
 
 class PlayerShowPage extends Component {
   constructor() {
     super();
     this.state = {
       player: {},
-      stats: [],
-      pointsBySeason: {}
+      stats: []
     };
   }
 
   async componentDidMount() {
     const playerData = await requests.getPlayer(this.props.match.params.id);
-    const playerStats = await requests.getPlayerStats(
-      this.props.match.params.id
-    );
+    const { stats } = playerData;
+
     this.setState({
       player: playerData,
-      stats: playerStats.stats,
-      pointsBySeason: playerStats.pointsBySeason
+      stats: stats
     });
   }
   render() {
-    const { player, stats, pointsBySeason } = this.state;
+    const { player, stats } = this.state;
     return (
       <div>
         <h1>{player.fullName}</h1>
-        <PlayerStatsChart data={pointsBySeason} />
-        <PlayerStatsTable
-          stats={stats.map(s => {
-            s.stat.season = `${s.season.substring(0, 4)}-${s.season.substring(
-              5,
-              7
-            )}`;
-            s.stat.points = s.stat.assists + s.stat.goals;
-            s.stat.team = s.team.name;
-            return s.stat;
-          })}
-        />
+        {player.primaryPosition && player.primaryPosition.code === "G" ? (
+          <div>Goalie Placeholder</div>
+        ) : (
+          <div>
+            <SkaterStatsChart data={stats} />
+            <SkaterStatsTable stats={stats} />
+          </div>
+        )}
       </div>
     );
   }

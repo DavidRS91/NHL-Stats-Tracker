@@ -1,4 +1,6 @@
 const mongoose = require("mongoose");
+const StatSchema = require("./Stat");
+const { Stat } = StatSchema;
 
 const Schema = mongoose.Schema;
 
@@ -32,7 +34,8 @@ const Player = new Schema({
     code: String,
     name: String,
     abbreviation: String
-  }
+  },
+  stats: [Stat]
 });
 
 const PlayerModel = mongoose.model("Player", Player);

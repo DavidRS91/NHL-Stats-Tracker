@@ -12,10 +12,4 @@ async function getPlayer(id) {
   return res;
 }
 
-async function getPlayerStats(id) {
-  const req = await fetch(`${DOMAIN}/stats/${id}`);
-  const res = await req.json();
-  return res;
-}
-
-export default { getPlayers, getPlayer, getPlayerStats };
+export default { getPlayers, getPlayer };
