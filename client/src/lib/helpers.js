@@ -31,4 +31,19 @@ function skaterGraphData(data) {
   };
 }
 
-module.exports = { skaterGraphData };
+function sumIntegers(stat, stats) {
+  return stats.map(s => s[stat]).reduce((a, b) => a + b, 0);
+}
+
+function sumTimeOnIce(stat, stats) {
+  let minutes = stats
+    .map(s => parseInt(s[stat].split(":")[0], 10))
+    .reduce((a, b) => a + b, 0);
+  let seconds = stats
+    .map(s => parseInt(s[stat].split(":")[1], 10))
+    .reduce((a, b) => a + b, 0);
+  minutes += Math.floor(seconds / 60);
+  return `${minutes}:${seconds % 60}`;
+}
+
+module.exports = { skaterGraphData, sumIntegers, sumTimeOnIce };
