@@ -1,28 +1,12 @@
 import React, { Component } from "react";
 import { Line } from "react-chartjs-2";
+import { skaterGraphData } from "../lib/helpers";
 
 class SkaterStatsChart extends Component {
   render() {
     const { data } = this.props;
-    return (
-      <Line
-        data={{
-          labels: data.map(s => s.season),
-          datasets: []
-        }}
-        options={{
-          scales: {
-            yAxes: [
-              {
-                ticks: {
-                  beginAtZero: true
-                }
-              }
-            ]
-          }
-        }}
-      />
-    );
+    const graphData = skaterGraphData(data);
+    return <Line data={graphData} />;
   }
 }
 
